@@ -3,7 +3,13 @@ name = "gexgit2"
 version = "0.0.1"
 edition = "2021"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+description = "Extension methods for libgit2"
+readme = "Readme.md"
+authors = [ "NYBACHOK", "nybachokua@gmail.com"]
+publish = true
+license = "MIT"
+repository = "https://github.com/NYBACHOK/gexgit2"
+keywords=["git"]
 
 [dependencies]
 git2 = { version = "0.18.0", features = []}
