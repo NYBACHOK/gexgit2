@@ -41,13 +41,17 @@ impl<'a> MergeHelper<'a> {
     checkout_opt.remove_untracked(true);
 
     let mut merge_opt = MergeOptions::default();
-    merge_opt.find_renames( true );
-    merge_opt.fail_on_conflict( true );
+    merge_opt.find_renames(true);
+    merge_opt.fail_on_conflict(true);
 
     self
       .repository
       .repository
-      .merge(&[&merge_from_commit], None, Some(&mut checkout_opt))
+      .merge(
+        &[&merge_from_commit],
+        Some(&mut merge_opt),
+        Some(&mut checkout_opt),
+      )
       .map_err(GitErrors::Git2Error)?;
 
     Ok(())
