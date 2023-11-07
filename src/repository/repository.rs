@@ -1,7 +1,5 @@
 use core::fmt::Debug;
-use git2::{
-  BranchType, Cred, FetchOptions, RemoteCallbacks, Repository as Git2Repository,
-};
+use git2::{BranchType, Cred, FetchOptions, RemoteCallbacks, Repository as Git2Repository};
 use std::fmt::Formatter;
 
 use crate::{
