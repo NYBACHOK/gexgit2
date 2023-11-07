@@ -42,6 +42,7 @@ impl<'a> MergeHelper<'a> {
 
     let mut merge_opt = MergeOptions::default();
     merge_opt.find_renames(true);
+    merge_opt.fail_on_conflict( false );
 
     self
       .repository

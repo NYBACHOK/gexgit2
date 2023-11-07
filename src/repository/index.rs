@@ -1,6 +1,6 @@
 use git2::{IndexAddOption, IndexMatchedPath, Oid};
 
-use crate::GitResult;
+use crate::{GitResult, errors::GitErrors};
 
 use super::repository::Repository;
 
@@ -16,6 +16,11 @@ impl<'a> IndexHelper<'a> {
   /// Write index into
   pub fn write(&self) -> GitResult<Oid> {
     let mut index = self.repository.repository().index()?;
+
+    if index.has_conflicts()
+    {
+      return Err( GitErrors::IndexConflicts );
+    }
 
     index.write()?;
 

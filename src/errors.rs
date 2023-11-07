@@ -5,8 +5,8 @@ pub enum GitErrors {
   #[error("Git error: {0}")]
   Git2Error(#[from] git2::Error),
   /// Merge contains errors
-  #[error("Merge contains conflicts")]
-  MergeConflicts,
+  #[error("Index contains conflicts")]
+  IndexConflicts,
   /// Merge contains no changes
   #[error("Repository already up to date")]
   UpToDate,
