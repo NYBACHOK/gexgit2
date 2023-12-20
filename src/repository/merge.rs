@@ -13,7 +13,7 @@ impl<'a> MergeHelper<'a> {
     Self { repository }
   }
 
-  pub fn merge(&self) -> GitResult<()> {
+  pub fn merge(&self, fail_on_conflict : bool ) -> GitResult<()> {
     let merge_from_name = format!("{UPSTREAM_NAME}/{}", self.repository.options.default_branch);
     let merge_from = self
       .repository
@@ -46,7 +46,7 @@ impl<'a> MergeHelper<'a> {
 
     let mut merge_opt = MergeOptions::default();
     merge_opt.find_renames(true);
-    merge_opt.fail_on_conflict( false );
+    merge_opt.fail_on_conflict( fail_on_conflict );
 
     self
       .repository
