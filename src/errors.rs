@@ -7,6 +7,9 @@ pub enum GitErrors {
   /// Merge contains errors
   #[error("Index contains conflicts")]
   IndexConflicts,
+  /// Merge is empty
+  #[error("Merge index is empty")]
+  Empty,
   /// Merge contains no changes
   #[error("Repository already up to date")]
   UpToDate,

@@ -34,10 +34,14 @@ impl<'a> MergeHelper<'a> {
       return Err(GitErrors::UpToDate);
     }
 
+    if merge_analysis.is_empty() {
+      return Err(GitErrors::Empty);
+    }
+
     let mut checkout_opt = CheckoutBuilder::default();
     checkout_opt.update_index(true);
-    checkout_opt.use_theirs(true);
-    checkout_opt.allow_conflicts(true);
+    // checkout_opt.use_theirs(true);
+    // checkout_opt.allow_conflicts(true);
     checkout_opt.remove_untracked(true);
 
     let mut merge_opt = MergeOptions::default();
