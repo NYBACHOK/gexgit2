@@ -13,7 +13,7 @@ impl<'a> MergeHelper<'a> {
     Self { repository }
   }
 
-  pub fn merge(&self, fail_on_conflict : bool ) -> GitResult<()> {
+  pub fn merge( &self, fail_on_conflict : bool, is_diff3 : bool, use_theirs : bool ) -> GitResult<()> {
     let merge_from_name = format!("{UPSTREAM_NAME}/{}", self.repository.options.default_branch);
     let merge_from = self
       .repository
@@ -40,13 +40,14 @@ impl<'a> MergeHelper<'a> {
 
     let mut checkout_opt = CheckoutBuilder::default();
     checkout_opt.update_index(true);
-    // checkout_opt.use_theirs(true);
+    checkout_opt.use_theirs( use_theirs );
     // checkout_opt.allow_conflicts(true);
     checkout_opt.remove_untracked(true);
 
     let mut merge_opt = MergeOptions::default();
     merge_opt.find_renames(true);
     merge_opt.fail_on_conflict( fail_on_conflict );
+    merge_opt.diff3_style( is_diff3 );
 
     self
       .repository
