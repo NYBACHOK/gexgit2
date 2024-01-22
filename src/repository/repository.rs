@@ -8,7 +8,10 @@ use crate::{
   GitResult,
 };
 
-use super::{branch::BranchHelper, commit::CommitHelper, index::IndexHelper, remote::RemoteHelper, merge::MergeHelper};
+use super::{
+  branch::BranchHelper, commit::CommitHelper, index::IndexHelper, merge::MergeHelper,
+  remote::RemoteHelper,
+};
 
 /// Structure for interacting with git repository
 ///
@@ -77,8 +80,7 @@ impl Repository {
     RemoteHelper::new(self)
   }
 
-  pub fn merge(&self) -> MergeHelper<'_>
-  {
+  pub fn merge(&self) -> MergeHelper<'_> {
     MergeHelper::new(self)
   }
 
